@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE profile>
 <profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <auth-client>
+    <conf_json>{"sssd":{"conf":{"sssd":{"config_file_version":"2","services":[],"domains":[]}},"pam":false,"nss":[],"enabled":false},"ldap":{"conf":{},"pam":false,"nss":[]},"krb":{"conf":{"include":[],"libdefaults":{"dns_canonicalize_hostname":"false","rdns":"false"},"realms":{},"domain_realms":{},"logging":{"kdc":"FILE:/var/log/krb5/krb5kdc.log","admin_server":"FILE:/var/log/krb5/kadmind.log","default":"SYSLOG:NOTICE:DAEMON"}},"pam":false},"aux":{"autofs":false,"nscd":true,"mkhomedir":false},"ad":{"domain":"","user":"","ou":"","pass":"","overwrite_smb_conf":false,"update_dns":true}}</conf_json>
+  </auth-client>
   <bootloader>
     <global>
       <append>nosplash console=tty1 console=ttyS0,115200n8 splash=silent quiet showopts</append>
@@ -17,6 +20,1661 @@
   <deploy_image>
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
+  <dhcp-server>
+    <allowed_interfaces config:type="list">
+      <allowed_interface>DMZ_1_BR</allowed_interface>
+      <allowed_interface>MSFT_BR</allowed_interface>
+      <allowed_interface>PAIGE_BR</allowed_interface>
+      <allowed_interface>SERVERS_BR</allowed_interface>
+      <allowed_interface>UNTRUSTED_BR</allowed_interface>
+      <allowed_interface>VOIP_BR</allowed_interface>
+    </allowed_interfaces>
+    <chroot>1</chroot>
+    <other_options/>
+    <settings config:type="list">
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>dynamic-bootp 10.242.254.2 10.242.254.100</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+        </directives>
+        <id>10.242.254.0 netmask 255.255.255.0</id>
+        <options config:type="list">
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.242.254.1</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.242.254.1</value>
+          </option>
+          <option>
+            <key>interface-mtu</key>
+            <type>option</type>
+            <value>9000</value>
+          </option>
+        </options>
+        <parent_id/>
+        <parent_type/>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>dynamic-bootp 10.242.128.2 10.242.128.100</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>86400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+        </directives>
+        <id>10.242.128.0 netmask 255.255.255.0</id>
+        <options config:type="list">
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.242.128.1</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.242.128.1</value>
+          </option>
+          <option>
+            <key>interface-mtu</key>
+            <type>option</type>
+            <value>9000</value>
+          </option>
+        </options>
+        <parent_id/>
+        <parent_type/>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>dynamic-bootp 10.242.242.2 10.242.242.100</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>86400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+        </directives>
+        <id>10.242.242.0 netmask 255.255.255.0</id>
+        <options config:type="list">
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.242.242.1</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.242.242.1</value>
+          </option>
+          <option>
+            <key>interface-mtu</key>
+            <type>option</type>
+            <value>9000</value>
+          </option>
+        </options>
+        <parent_id/>
+        <parent_type/>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>dynamic-bootp 10.242.240.10 10.242.240.100</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+        </directives>
+        <id>10.242.240.0 netmask 255.255.255.0</id>
+        <options config:type="list">
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.242.240.1</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.242.240.254</value>
+          </option>
+          <option>
+            <key>interface-mtu</key>
+            <type>option</type>
+            <value>9000</value>
+          </option>
+        </options>
+        <parent_id/>
+        <parent_type/>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list">
+          <child>
+            <id>10.242.254.0 netmask 255.255.255.0</id>
+            <type>subnet</type>
+          </child>
+          <child>
+            <id>10.242.128.0 netmask 255.255.255.0</id>
+            <type>subnet</type>
+          </child>
+          <child>
+            <id>10.242.242.0 netmask 255.255.255.0</id>
+            <type>subnet</type>
+          </child>
+          <child>
+            <id>10.242.240.0 netmask 255.255.255.0</id>
+            <type>subnet</type>
+          </child>
+        </children>
+        <directives config:type="list">
+          <listentry>
+            <key>ddns-update-style</key>
+            <type>directive</type>
+            <value>none</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>31536000</value>
+          </listentry>
+        </directives>
+        <id/>
+        <options config:type="list">
+          <option>
+            <key>domain-name</key>
+            <type>option</type>
+            <value>"dmz-1.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.242.254.1</value>
+          </option>
+        </options>
+        <parent_id/>
+        <parent_type/>
+        <type/>
+      </settings_entry>
+    </settings>
+    <start_service>1</start_service>
+    <use_ldap>0</use_ldap>
+  </dhcp-server>
+  <dns-server>
+    <allowed_interfaces config:type="list"/>
+    <chroot>1</chroot>
+    <logging config:type="list"/>
+    <options config:type="list">
+      <option>
+        <key>directory</key>
+        <value>"/var/lib/named"</value>
+      </option>
+      <option>
+        <key>disable-empty-zone</key>
+        <value>"1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.IP6.ARPA"</value>
+      </option>
+      <option>
+        <key>dump-file</key>
+        <value>"/var/log/named_dump.db"</value>
+      </option>
+      <option>
+        <key>include</key>
+        <value>"/etc/named.d/forwarders.conf"</value>
+      </option>
+      <option>
+        <key>listen-on-v6</key>
+        <value>{ any; }</value>
+      </option>
+      <option>
+        <key>managed-keys-directory</key>
+        <value>"/var/lib/named/dyn/"</value>
+      </option>
+      <option>
+        <key>notify</key>
+        <value>no</value>
+      </option>
+      <option>
+        <key>statistics-file</key>
+        <value>"/var/log/named.stats"</value>
+      </option>
+      <option>
+        <key>forwarders</key>
+        <value>10.242.192.2</value>
+      </option>
+    </options>
+    <start_service>1</start_service>
+    <use_ldap>0</use_ldap>
+    <zones config:type="list">
+      <zone>
+        <file>master/netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/servers.netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/servers.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>servers.netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>servers.netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/nomansland.netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/nomansland.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>nomansland.netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>nomansland.netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/dmz-1.netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/dmz-1.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>dmz-1.netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-1</key>
+            <type>A</type>
+            <value>10.242.254.2</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-2</key>
+            <type>A</type>
+            <value>10.242.254.3</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-3</key>
+            <type>A</type>
+            <value>10.242.254.4</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-4</key>
+            <type>A</type>
+            <value>10.242.254.5</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-5</key>
+            <type>A</type>
+            <value>10.242.254.6</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-6</key>
+            <type>A</type>
+            <value>10.242.254.7</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-7</key>
+            <type>A</type>
+            <value>10.242.254.8</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-8</key>
+            <type>A</type>
+            <value>10.242.254.9</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-9</key>
+            <type>A</type>
+            <value>10.242.254.10</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-10</key>
+            <type>A</type>
+            <value>10.242.254.11</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-11</key>
+            <type>A</type>
+            <value>10.242.254.12</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-12</key>
+            <type>A</type>
+            <value>10.242.254.13</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-13</key>
+            <type>A</type>
+            <value>10.242.254.14</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-14</key>
+            <type>A</type>
+            <value>10.242.254.15</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-15</key>
+            <type>A</type>
+            <value>10.242.254.16</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-16</key>
+            <type>A</type>
+            <value>10.242.254.17</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-17</key>
+            <type>A</type>
+            <value>10.242.254.18</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-18</key>
+            <type>A</type>
+            <value>10.242.254.19</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-19</key>
+            <type>A</type>
+            <value>10.242.254.20</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-20</key>
+            <type>A</type>
+            <value>10.242.254.21</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-21</key>
+            <type>A</type>
+            <value>10.242.254.22</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-22</key>
+            <type>A</type>
+            <value>10.242.254.23</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-23</key>
+            <type>A</type>
+            <value>10.242.254.24</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-24</key>
+            <type>A</type>
+            <value>10.242.254.25</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-25</key>
+            <type>A</type>
+            <value>10.242.254.26</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-26</key>
+            <type>A</type>
+            <value>10.242.254.27</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-27</key>
+            <type>A</type>
+            <value>10.242.254.28</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-28</key>
+            <type>A</type>
+            <value>10.242.254.29</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-29</key>
+            <type>A</type>
+            <value>10.242.254.30</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-30</key>
+            <type>A</type>
+            <value>10.242.254.31</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-31</key>
+            <type>A</type>
+            <value>10.242.254.32</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-32</key>
+            <type>A</type>
+            <value>10.242.254.33</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-33</key>
+            <type>A</type>
+            <value>10.242.254.34</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-34</key>
+            <type>A</type>
+            <value>10.242.254.35</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-35</key>
+            <type>A</type>
+            <value>10.242.254.36</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-36</key>
+            <type>A</type>
+            <value>10.242.254.37</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-37</key>
+            <type>A</type>
+            <value>10.242.254.38</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-38</key>
+            <type>A</type>
+            <value>10.242.254.39</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-39</key>
+            <type>A</type>
+            <value>10.242.254.40</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-40</key>
+            <type>A</type>
+            <value>10.242.254.41</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-41</key>
+            <type>A</type>
+            <value>10.242.254.42</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-42</key>
+            <type>A</type>
+            <value>10.242.254.43</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-43</key>
+            <type>A</type>
+            <value>10.242.254.44</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-44</key>
+            <type>A</type>
+            <value>10.242.254.45</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-45</key>
+            <type>A</type>
+            <value>10.242.254.46</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-46</key>
+            <type>A</type>
+            <value>10.242.254.47</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-47</key>
+            <type>A</type>
+            <value>10.242.254.48</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-48</key>
+            <type>A</type>
+            <value>10.242.254.49</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-49</key>
+            <type>A</type>
+            <value>10.242.254.50</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-50</key>
+            <type>A</type>
+            <value>10.242.254.51</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-51</key>
+            <type>A</type>
+            <value>10.242.254.52</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-52</key>
+            <type>A</type>
+            <value>10.242.254.53</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-53</key>
+            <type>A</type>
+            <value>10.242.254.54</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-54</key>
+            <type>A</type>
+            <value>10.242.254.55</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-55</key>
+            <type>A</type>
+            <value>10.242.254.56</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-56</key>
+            <type>A</type>
+            <value>10.242.254.57</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-57</key>
+            <type>A</type>
+            <value>10.242.254.58</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-58</key>
+            <type>A</type>
+            <value>10.242.254.59</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-59</key>
+            <type>A</type>
+            <value>10.242.254.60</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-60</key>
+            <type>A</type>
+            <value>10.242.254.61</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-61</key>
+            <type>A</type>
+            <value>10.242.254.62</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-62</key>
+            <type>A</type>
+            <value>10.242.254.63</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-63</key>
+            <type>A</type>
+            <value>10.242.254.64</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-64</key>
+            <type>A</type>
+            <value>10.242.254.65</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-65</key>
+            <type>A</type>
+            <value>10.242.254.66</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-66</key>
+            <type>A</type>
+            <value>10.242.254.67</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-67</key>
+            <type>A</type>
+            <value>10.242.254.68</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-68</key>
+            <type>A</type>
+            <value>10.242.254.69</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-69</key>
+            <type>A</type>
+            <value>10.242.254.70</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-70</key>
+            <type>A</type>
+            <value>10.242.254.71</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-71</key>
+            <type>A</type>
+            <value>10.242.254.72</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-72</key>
+            <type>A</type>
+            <value>10.242.254.73</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-73</key>
+            <type>A</type>
+            <value>10.242.254.74</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-74</key>
+            <type>A</type>
+            <value>10.242.254.75</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-75</key>
+            <type>A</type>
+            <value>10.242.254.76</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-76</key>
+            <type>A</type>
+            <value>10.242.254.77</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-77</key>
+            <type>A</type>
+            <value>10.242.254.78</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-78</key>
+            <type>A</type>
+            <value>10.242.254.79</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-79</key>
+            <type>A</type>
+            <value>10.242.254.80</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-80</key>
+            <type>A</type>
+            <value>10.242.254.81</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-81</key>
+            <type>A</type>
+            <value>10.242.254.82</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-82</key>
+            <type>A</type>
+            <value>10.242.254.83</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-83</key>
+            <type>A</type>
+            <value>10.242.254.84</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-84</key>
+            <type>A</type>
+            <value>10.242.254.85</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-85</key>
+            <type>A</type>
+            <value>10.242.254.86</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-86</key>
+            <type>A</type>
+            <value>10.242.254.87</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-87</key>
+            <type>A</type>
+            <value>10.242.254.88</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-88</key>
+            <type>A</type>
+            <value>10.242.254.89</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-89</key>
+            <type>A</type>
+            <value>10.242.254.90</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-90</key>
+            <type>A</type>
+            <value>10.242.254.91</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-91</key>
+            <type>A</type>
+            <value>10.242.254.92</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-92</key>
+            <type>A</type>
+            <value>10.242.254.93</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-93</key>
+            <type>A</type>
+            <value>10.242.254.94</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-94</key>
+            <type>A</type>
+            <value>10.242.254.95</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-95</key>
+            <type>A</type>
+            <value>10.242.254.96</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-96</key>
+            <type>A</type>
+            <value>10.242.254.97</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-97</key>
+            <type>A</type>
+            <value>10.242.254.98</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-98</key>
+            <type>A</type>
+            <value>10.242.254.99</value>
+          </listentry>
+          <listentry>
+            <key>dhcp-99</key>
+            <type>A</type>
+            <value>10.242.254.100</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>dmz-1.netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/paige.netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/paige.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>paige.netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>paige.netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/corp.netcrave.internal</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/corp.netcrave.internal"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>corp.netcrave.internal.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>corp.netcrave.internal</zone>
+      </zone>
+      <zone>
+        <file>master/254.242.10.in-addr.arpa</file>
+        <options config:type="list">
+          <option>
+            <key>file</key>
+            <value>"master/254.242.10.in-addr.arpa"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>254.242.10.in-addr.arpa.</key>
+            <type>NS</type>
+            <value>linux-9c9c.</value>
+          </listentry>
+          <listentry>
+            <key>2.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-1.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>3.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-2.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>4.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-3.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>5.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-4.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>6.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-5.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>7.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-6.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>8.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-7.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>9.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-8.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>10.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-9.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>11.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-10.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>12.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-11.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>13.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-12.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>14.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-13.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>15.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-14.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>16.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-15.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>17.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-16.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>18.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-17.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>19.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-18.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>20.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-19.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>21.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-20.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>22.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-21.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>23.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-22.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>24.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-23.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>25.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-24.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>26.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-25.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>27.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-26.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>28.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-27.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>29.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-28.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>30.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-29.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>31.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-30.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>32.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-31.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>33.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-32.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>34.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-33.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>35.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-34.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>36.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-35.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>37.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-36.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>38.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-37.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>39.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-38.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>40.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-39.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>41.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-40.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>42.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-41.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>43.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-42.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>44.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-43.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>45.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-44.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>46.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-45.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>47.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-46.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>48.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-47.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>49.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-48.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>50.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-49.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>51.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-50.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>52.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-51.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>53.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-52.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>54.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-53.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>55.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-54.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>56.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-55.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>57.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-56.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>58.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-57.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>59.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-58.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>60.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-59.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>61.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-60.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>62.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-61.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>63.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-62.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>64.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-63.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>65.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-64.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>66.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-65.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>67.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-66.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>68.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-67.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>69.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-68.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>70.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-69.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>71.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-70.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>72.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-71.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>73.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-72.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>74.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-73.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>75.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-74.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>76.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-75.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>77.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-76.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>78.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-77.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>79.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-78.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>80.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-79.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>81.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-80.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>82.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-81.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>83.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-82.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>84.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-83.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>85.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-84.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>86.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-85.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>87.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-86.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>88.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-87.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>89.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-88.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>90.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-89.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>91.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-90.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>92.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-91.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>93.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-92.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>94.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-93.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>95.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-94.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>96.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-95.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>97.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-96.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>98.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-97.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>99.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-98.dmz-1.netcrave.internal.</value>
+          </listentry>
+          <listentry>
+            <key>100.254.242.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>dhcp-99.dmz-1.netcrave.internal.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>1W</expiry>
+          <mail>root.linux-9c9c.</mail>
+          <minimum>1D</minimum>
+          <refresh>3H</refresh>
+          <retry>1H</retry>
+          <serial>2019070600</serial>
+          <server>linux-9c9c.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>2D</ttl>
+        <type>master</type>
+        <zone>254.242.10.in-addr.arpa</zone>
+      </zone>
+    </zones>
+  </dns-server>
+  <firewall>
+    <default_zone>block</default_zone>
+    <enable_firewall config:type="boolean">true</enable_firewall>
+    <log_denied_packets>all</log_denied_packets>
+    <start_firewall config:type="boolean">true</start_firewall>
+    <zones config:type="list">
+      <zone>
+        <description>Unsolicited incoming network packets are rejected. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>block</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Block</short>
+        <sources config:type="list"/>
+        <target>%%REJECT%%</target>
+      </zone>
+      <zone>
+        <description>For computers in your demilitarized zone that are publicly-accessible with limited access to your internal network. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>dmz</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>dns</service>
+        </services>
+        <short>DMZ</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>Unsolicited incoming network packets are dropped. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>drop</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Drop</short>
+        <sources config:type="list"/>
+        <target>DROP</target>
+      </zone>
+      <zone>
+        <description>For use on external networks. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list">
+          <interface>LEGACY_BR</interface>
+        </interfaces>
+        <masquerade config:type="boolean">true</masquerade>
+        <name>external</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+        </services>
+        <short>External</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use in home areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>home</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>mdns</service>
+          <service>samba-client</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Home</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use on internal networks. You mostly trust the other computers on the networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list">
+          <interface>DMZ_1_BR</interface>
+          <interface>MSFT_BR</interface>
+          <interface>PAIGE_BR</interface>
+          <interface>SERVERS_BR</interface>
+          <interface>UNTRUSTED_BR</interface>
+          <interface>VOIP_BR</interface>
+        </interfaces>
+        <masquerade config:type="boolean">true</masquerade>
+        <name>internal</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>mdns</service>
+          <service>samba-client</service>
+          <service>dhcpv6-client</service>
+          <service>dns</service>
+          <service>tigervnc</service>
+          <service>tigervnc-https</service>
+          <service>squid</service>
+          <service>tftp</service>
+        </services>
+        <short>Internal</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>public</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Public</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>All network connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>trusted</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Trusted</short>
+        <sources config:type="list"/>
+        <target>ACCEPT</target>
+      </zone>
+      <zone>
+        <description>For use in work areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>work</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>dhcpv6-client</service>
+          <service>dns</service>
+        </services>
+        <short>Work</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+    </zones>
+  </firewall>
   <general>
     <ask-list config:type="list"/>
     <mode>
@@ -37,12 +1695,119 @@
     </signature-handling>
     <storage/>
   </general>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>10.242.0.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.128.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.168.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.192.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.2.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.240.254</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.242.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>10.242.254.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>169.254.1.1</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>192.168.1.245</host_address>
+        <names config:type="list">
+          <name>linux-9c9c</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>::1</host_address>
+        <names config:type="list">
+          <name>localhost ipv6-localhost ipv6-loopback</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>fe00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-localnet</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-mcastprefix</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::1</host_address>
+        <names config:type="list">
+          <name>ipv6-allnodes</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::2</host_address>
+        <names config:type="list">
+          <name>ipv6-allrouters</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::3</host_address>
+        <names config:type="list">
+          <name>ipv6-allhosts</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
+  <login_settings/>
   <networking>
     <dhcp_options>
-      <dhclient_client_id/>
       <dhclient_hostname_option>AUTO</dhclient_hostname_option>
     </dhcp_options>
     <dns>
@@ -55,6 +1820,14 @@
       <write_hostname config:type="boolean">false</write_hostname>
     </dns>
     <interfaces config:type="list">
+      <interface>
+        <bootproto>none</bootproto>
+        <device>DMZ_1</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>3</vlan_id>
+      </interface>
       <interface>
         <bonding_master>yes</bonding_master>
         <bonding_module_opts>mode=802.3ad miimon=100</bonding_module_opts>
@@ -82,12 +1855,12 @@
       </interface>
       <interface>
         <aliases>
-          <alias0>
+          <aliasWAN>
             <IPADDR>192.168.1.245</IPADDR>
             <LABEL>WAN</LABEL>
             <NETMASK>255.255.255.0</NETMASK>
             <PREFIXLEN>24</PREFIXLEN>
-          </alias0>
+          </aliasWAN>
         </aliases>
         <bootproto>dhcp6</bootproto>
         <bridge>yes</bridge>
@@ -326,48 +2099,6 @@
     <ipv6 config:type="boolean">true</ipv6>
     <keep_install_network config:type="boolean">true</keep_install_network>
     <managed config:type="boolean">false</managed>
-    <net-udev config:type="list">
-      <rule>
-        <name>eth0</name>
-        <rule>KERNELS</rule>
-        <value>0000:05:00.0</value>
-      </rule>
-      <rule>
-        <name>eth1</name>
-        <rule>KERNELS</rule>
-        <value>0000:06:00.0</value>
-      </rule>
-      <rule>
-        <name>eth2</name>
-        <rule>KERNELS</rule>
-        <value>0000:0a:00.0</value>
-      </rule>
-      <rule>
-        <name>eth4</name>
-        <rule>KERNELS</rule>
-        <value>0000:0b:00.0</value>
-      </rule>
-      <rule>
-        <name>eth5</name>
-        <rule>KERNELS</rule>
-        <value>0000:0c:00.0</value>
-      </rule>
-      <rule>
-        <name>eth6</name>
-        <rule>KERNELS</rule>
-        <value>0000:09:00.0</value>
-      </rule>
-      <rule>
-        <name>eth7</name>
-        <rule>KERNELS</rule>
-        <value>0000:08:00.0</value>
-      </rule>
-      <rule>
-        <name>eth8</name>
-        <rule>KERNELS</rule>
-        <value>0000:07:00.0</value>
-      </rule>
-    </net-udev>
     <routing>
       <ipv4_forward config:type="boolean">false</ipv4_forward>
       <ipv6_forward config:type="boolean">false</ipv6_forward>
@@ -391,6 +2122,7 @@
         <partition>
           <create config:type="boolean">true</create>
           <filesystem config:type="symbol">vfat</filesystem>
+          <filesystem_id config:type="integer">259</filesystem_id>
           <format config:type="boolean">true</format>
           <fstopt>codepage=437</fstopt>
           <label>EFI</label>
@@ -406,6 +2138,7 @@
           <create config:type="boolean">true</create>
           <create_subvolumes config:type="boolean">true</create_subvolumes>
           <filesystem config:type="symbol">btrfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <label>ROOT</label>
           <mount>/</mount>
@@ -720,6 +2453,24 @@ DefaultPolicy default
 ]]></file_contents>
     </cupsd_conf_content>
   </printer>
+  <proxy>
+    <enabled config:type="boolean">false</enabled>
+    <ftp_proxy/>
+    <http_proxy/>
+    <https_proxy/>
+    <no_proxy>localhost,127.0.0.1</no_proxy>
+    <proxy_password/>
+    <proxy_user/>
+  </proxy>
+  <scripts>
+    <init-scripts config:type="list">
+      <script>
+        <filename>zzz_reboot</filename>
+        <source><![CDATA[shutdown -r now]]></source>
+      </script>
+    </init-scripts>
+  </scripts>
+  <security/>
   <services-manager>
     <default_target>graphical</default_target>
     <services>
@@ -774,9 +2525,7 @@ DefaultPolicy default
     </services>
   </services-manager>
   <software>
-    <image/>
     <install_recommended config:type="boolean">true</install_recommended>
-    <instsource/>
     <packages config:type="list">
       <package>zd1211-firmware</package>
       <package>yast2-squid</package>
@@ -858,7 +2607,6 @@ DefaultPolicy default
   </software>
   <sound>
     <configure_detected config:type="boolean">false</configure_detected>
-    <modules_conf config:type="list"/>
     <pulse_audio_status config:type="boolean">true</pulse_audio_status>
     <rc_vars>
       <LOAD_ALSA_SEQ>no</LOAD_ALSA_SEQ>
@@ -878,6 +2626,10 @@ DefaultPolicy default
       </volume_entry>
     </volume_settings>
   </sound>
+  <ssh_import>
+    <copy_config config:type="boolean">true</copy_config>
+    <import config:type="boolean">true</import>
+  </ssh_import>
   <sysconfig config:type="list">
     <sysconfig_entry>
       <sysconfig_key>SSHD_OPTS</sysconfig_key>
@@ -885,4 +2637,67 @@ DefaultPolicy default
       <sysconfig_value>-o "PermitEmptyPassword no" -o "PubkeyAuthentication yes" -o "PasswordAuthentication no" -o "ChallengeResponseAuthentication no"</sysconfig_value>
     </sysconfig_entry>
   </sysconfig>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Etc/UTC</timezone>
+  </timezone>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>0</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask/>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <authorized_keys config:type="list">
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTC5uOuMrdR4iA7Pgg0AoquNx5YfOUyIvIZvi5n5ZPzL4K6aMqxNsBP69cueG9vYOQ/IMsFRVCv2aFZmsRp4CUj2rrB17+IQagkFJcLuJXr3AobxTHDgedz34stxrz0Xs2NIdSsOSVsm1fBI7NyeNikcN3qHdIeQW9JSdjqlJM63PzM7Q/oKvzbkQ0fo4gtGdYEHg+o4A7c7BhlWn/Xn9ADIf+q2GWsgNPleUXg6IUgX9vUv7WRfZHMLe0UXYUX2FbYJQ19DoindX8N5G9chW+TPB/oIsBIbntU4VyJu+nqCW2nzcyWqUysJ9e2Uf/lrbtEJTuYbHNqmq9XRHcIqiX erratic@molly</authorized_key>
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWebUARwn1BwQa2V3PEMza2uuhNT6wBjZLlyd3NnhnqvxoZzjLCT3+8sLkQPBQd1R3V8BRR79QOhKf1aCkuYgVotc2sQm1AyFZ138p6Yup5AIEv/7pu7aSP0CP4vT8sJjO26KKPWNL1A0gM0lEo59OJ0cT1MaPdparRrAiHK3p2vkCDiDPD5vwOVdzS//JYsBrWyM2MYMDNwDRRGZtSS0yOJs4umDVuQD4jJKOzmjrwdjENctUAMn5wT8XGJYKelrqdQr5DyymYEQk693pCo+7oHgd002tjzjxfYHQ1isMIR800P48yZZ5Rp/CnaWCCV+q0iC2gcR1EBEBIxcepazV erratic@linux-0vbz</authorized_key>
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCi2csv+ddd2RZfaZ0f2yQRuPfM7yQ3gEBFG9l9AMKfPp4P9ooUJoUqnIt4XdJgvGP0syiTB68oO3LZhA6o1u1RujOp3QwoFjWFsFKndNckUHwI8qr+8OgFtjdvqgMG45Cwkc2TLIk7TtLotVD0Ez7+Tv43moq36K1Rhba35QPww1/dFCCzztc3pcwVUBXko+SQI/YfZ75Q1bSk8KzgZNVM54ln+Q6QZMxHSzx6DZFiPQazd8xDOxyB+d7cOzuUoFDkinISZEn75+Swk7go55wXzLFYNp7OFH/Kp/lxNgs6mrUSs5bdhxalJ3W0YLHKCZSO/IgfbHf87yoTJrjW8SNf erratic@linux-nkci</authorized_key>
+      </authorized_keys>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>suse</fullname>
+      <gid>100</gid>
+      <home>/home/suse</home>
+      <shell>/bin/bash</shell>
+      <uid>1000</uid>
+      <user_password>$6$SqCHbtRFtUZ4$EuGkW5ZSMmX86Hm/4vnuiAxpN0xYMzCM8jUfOQxFD8j2mZwPd.GNa95jYeePJ.xba3SGl/QmBy.TSC65IZ53N1</user_password>
+      <username>suse</username>
+    </user>
+  </users>
+  <vpn>
+    <enable_ipsec config:type="boolean">true</enable_ipsec>
+    <ipsec_conns>
+      <netcrave>
+        <auto>add</auto>
+        <dpdaction>clear</dpdaction>
+        <dpddelay>60</dpddelay>
+        <dpdtimeout>600</dpdtimeout>
+        <fragmentation>yes</fragmentation>
+        <keyexchange>ikev2</keyexchange>
+        <left>%defaultroute</left>
+        <leftauth>psk</leftauth>
+        <leftsubnet>10.242.254.0/24,10.242.2..0/24</leftsubnet>
+        <right>%any</right>
+        <rightauth>psk</rightauth>
+        <rightsourceip>10.242.248.0/24</rightsourceip>
+      </netcrave>
+    </ipsec_conns>
+    <ipsec_secrets>
+      <eap config:type="list"/>
+      <psk config:type="list">
+        <listentry>
+          <id>%any</id>
+          <secret>1b40f32989</secret>
+        </listentry>
+      </psk>
+      <rsa config:type="list"/>
+      <xauth config:type="list"/>
+    </ipsec_secrets>
+    <tcp_reduce_mss config:type="boolean">false</tcp_reduce_mss>
+  </vpn>
 </profile>
