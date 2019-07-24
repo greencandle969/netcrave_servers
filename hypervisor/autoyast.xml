@@ -1,0 +1,1269 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <auth-client>
+    <conf_json>{"sssd":{"conf":{"sssd":{"config_file_version":"2","services":[],"domains":[]}},"pam":false,"nss":[],"enabled":false},"ldap":{"conf":{},"pam":false,"nss":[]},"krb":{"conf":{"include":[],"libdefaults":{"dns_canonicalize_hostname":"false","rdns":"false"},"realms":{},"domain_realms":{},"logging":{"kdc":"FILE:/var/log/krb5/krb5kdc.log","admin_server":"FILE:/var/log/krb5/kadmind.log","default":"SYSLOG:NOTICE:DAEMON"}},"pam":false},"aux":{"autofs":false,"nscd":true,"mkhomedir":false},"ad":{"domain":"","user":"","ou":"","pass":"","overwrite_smb_conf":false,"update_dns":true}}</conf_json>
+  </auth-client>
+  <bootloader>
+    <global>
+      <append>resume=/dev/disk/by-label/SWAP splash=silent quiet showopts intel_iommu=on console=ttyS0,115200n vfio-pci.ids=1c5c:1283,1b73:1100,1002:67b1,1002:aac8 isolcpus=10,11,12,13,14,15,30,31,32,33,34,35 hugepagesz=1G default_hugepagesz=1G pcie_aspm=off</append>
+      <gfxmode>auto</gfxmode>
+      <hiddenmenu>false</hiddenmenu>
+      <os_prober>true</os_prober>
+      <serial>serial --unit=0 --speed=115200 --parity=no</serial>
+      <terminal>gfxterm serial</terminal>
+      <timeout config:type="integer">8</timeout>
+      <xen_kernel_append>vga=gfx-1024x768x16</xen_kernel_append>
+    </global>
+    <loader_type>grub2-efi</loader_type>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <default_zone>public</default_zone>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <log_denied_packets>off</log_denied_packets>
+    <start_firewall config:type="boolean">false</start_firewall>
+    <zones config:type="list">
+      <zone>
+        <description>Unsolicited incoming network packets are rejected. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>block</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Block</short>
+        <sources config:type="list"/>
+        <target>%%REJECT%%</target>
+      </zone>
+      <zone>
+        <description>For computers in your demilitarized zone that are publicly-accessible with limited access to your internal network. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>dmz</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+        </services>
+        <short>DMZ</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>Unsolicited incoming network packets are dropped. Incoming packets that are related to outgoing network connections are accepted. Outgoing network connections are allowed.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>drop</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Drop</short>
+        <sources config:type="list"/>
+        <target>DROP</target>
+      </zone>
+      <zone>
+        <description>For use on external networks. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">true</masquerade>
+        <name>external</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+        </services>
+        <short>External</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use in home areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>home</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>mdns</service>
+          <service>samba-client</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Home</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use on internal networks. You mostly trust the other computers on the networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list">
+          <interface>DMZ_1_VIF2</interface>
+        </interfaces>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>internal</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>mdns</service>
+          <service>samba-client</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Internal</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>public</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Public</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+      <zone>
+        <description>All network connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>trusted</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list"/>
+        <short>Trusted</short>
+        <sources config:type="list"/>
+        <target>ACCEPT</target>
+      </zone>
+      <zone>
+        <description>For use in work areas. You mostly trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+        <interfaces config:type="list"/>
+        <masquerade config:type="boolean">false</masquerade>
+        <name>work</name>
+        <ports config:type="list"/>
+        <protocols config:type="list"/>
+        <services config:type="list">
+          <service>ssh</service>
+          <service>dhcpv6-client</service>
+        </services>
+        <short>Work</short>
+        <sources config:type="list"/>
+        <target>default</target>
+      </zone>
+    </zones>
+  </firewall>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">true</confirm>
+      <final_halt config:type="boolean">false</final_halt>
+      <final_reboot config:type="boolean">true</final_reboot>
+      <halt config:type="boolean">false</halt>
+      <second_stage config:type="boolean">true</second_stage>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">false</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">false</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">false</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">false</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage/>
+  </general>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>10.242.242.254</host_address>
+        <names config:type="list">
+          <name>molly</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>::1</host_address>
+        <names config:type="list">
+          <name>localhost ipv6-localhost ipv6-loopback</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>fe00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-localnet</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-mcastprefix</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::1</host_address>
+        <names config:type="list">
+          <name>ipv6-allnodes</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::2</host_address>
+        <names config:type="list">
+          <name>ipv6-allrouters</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::3</host_address>
+        <names config:type="list">
+          <name>ipv6-allhosts</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+  <kdump>
+    <add_crash_kernel config:type="boolean">true</add_crash_kernel>
+    <crash_kernel>72M</crash_kernel>
+    <crash_xen_kernel>72M\&lt;4G</crash_xen_kernel>
+    <general>
+      <KDUMPTOOL_FLAGS/>
+      <KDUMP_COMMANDLINE/>
+      <KDUMP_COMMANDLINE_APPEND/>
+      <KDUMP_CONTINUE_ON_ERROR>true</KDUMP_CONTINUE_ON_ERROR>
+      <KDUMP_COPY_KERNEL>yes</KDUMP_COPY_KERNEL>
+      <KDUMP_CPUS/>
+      <KDUMP_DUMPFORMAT>lzo</KDUMP_DUMPFORMAT>
+      <KDUMP_DUMPLEVEL>31</KDUMP_DUMPLEVEL>
+      <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
+      <KDUMP_HOST_KEY/>
+      <KDUMP_IMMEDIATE_REBOOT>yes</KDUMP_IMMEDIATE_REBOOT>
+      <KDUMP_KEEP_OLD_DUMPS>5</KDUMP_KEEP_OLD_DUMPS>
+      <KDUMP_KERNELVER/>
+      <KDUMP_NETCONFIG>auto</KDUMP_NETCONFIG>
+      <KDUMP_NET_TIMEOUT>30</KDUMP_NET_TIMEOUT>
+      <KDUMP_NOTIFICATION_CC/>
+      <KDUMP_NOTIFICATION_TO/>
+      <KDUMP_POSTSCRIPT/>
+      <KDUMP_PRESCRIPT/>
+      <KDUMP_REQUIRED_PROGRAMS/>
+      <KDUMP_SAVEDIR>file:///var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SMTP_PASSWORD/>
+      <KDUMP_SMTP_SERVER/>
+      <KDUMP_SMTP_USER/>
+      <KDUMP_TRANSFER/>
+      <KDUMP_VERBOSE>3</KDUMP_VERBOSE>
+      <KEXEC_OPTIONS/>
+    </general>
+  </kdump>
+  <login_settings/>
+  <networking>
+    <dns>
+      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
+      <hostname>linux-6dvp</hostname>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>static</bootproto>
+        <device>lo</device>
+        <firewall>no</firewall>
+        <ipaddr>127.0.0.1</ipaddr>
+        <netmask>255.0.0.0</netmask>
+        <network>127.0.0.0</network>
+        <prefixlen>8</prefixlen>
+        <startmode>nfsroot</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+    </interfaces>
+    <ipv6 config:type="boolean">true</ipv6>
+    <keep_install_network config:type="boolean">true</keep_install_network>
+    <managed config:type="boolean">false</managed>
+    <routing>
+      <ipv4_forward config:type="boolean">false</ipv4_forward>
+      <ipv6_forward config:type="boolean">false</ipv6_forward>
+    </routing>
+  </networking>
+  <ntp-client>
+    <ntp_policy>auto</ntp_policy>
+    <ntp_servers config:type="list">
+      <ntp_server>
+        <address>1.opensuse.pool.ntp.org</address>
+        <iburst config:type="boolean">true</iburst>
+        <offline config:type="boolean">false</offline>
+      </ntp_server>
+    </ntp_servers>
+    <ntp_sync>systemd</ntp_sync>
+  </ntp-client>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/md/EFI</device>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">false</create>
+          <filesystem config:type="symbol">vfat</filesystem>
+          <format config:type="boolean">false</format>
+          <fstopt>codepage=437</fstopt>
+          <label>EFI</label>
+          <mount>/boot/efi</mount>
+          <mountby config:type="symbol">label</mountby>
+          <resize config:type="boolean">false</resize>
+        </partition>
+      </partitions>
+      <raid_options>
+        <chunk_size>0B</chunk_size>
+        <parity_algorithm>default</parity_algorithm>
+        <raid_type>raid1</raid_type>
+      </raid_options>
+      <type config:type="symbol">CT_MD</type>
+    </drive>
+    <drive>
+      <device>/dev/md/EXPORT_1</device>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">false</create>
+          <create_subvolumes config:type="boolean">false</create_subvolumes>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">false</format>
+          <label>EXPORT_1</label>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <mount>/mnt/EXPORT_1</mount>
+          <mountby config:type="symbol">label</mountby>
+          <resize config:type="boolean">false</resize>
+          <subvolumes config:type="list"/>
+          <subvolumes_prefix><![CDATA[]]></subvolumes_prefix>
+        </partition>
+      </partitions>
+      <raid_options>
+        <chunk_size>131072B</chunk_size>
+        <parity_algorithm>left_symmetric</parity_algorithm>
+        <raid_type>raid6</raid_type>
+      </raid_options>
+      <type config:type="symbol">CT_MD</type>
+    </drive>
+    <drive>
+      <device>/dev/md/molly:1</device>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">false</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">false</format>
+          <fstopt>acl,noatime,user_xattr,data=ordered</fstopt>
+          <label>EXPORT_2</label>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <mount>/mnt/EXPORT_2</mount>
+          <mountby config:type="symbol">label</mountby>
+          <resize config:type="boolean">false</resize>
+        </partition>
+      </partitions>
+      <raid_options>
+        <chunk_size>131072B</chunk_size>
+        <parity_algorithm>default</parity_algorithm>
+        <raid_type>raid0</raid_type>
+      </raid_options>
+      <type config:type="symbol">CT_MD</type>
+    </drive>
+    <drive>
+      <device>/dev/VG_2</device>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>KubernetesOS</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>34359738368</size>
+          <stripes config:type="integer">1</stripes>
+          <stripesize config:type="integer">0</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>NetworkServices</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>115964116992</size>
+          <stripes config:type="integer">2</stripes>
+          <stripesize config:type="integer">0</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>DC_1</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>115964116992</size>
+          <stripes config:type="integer">6</stripes>
+          <stripesize config:type="integer">128</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>Shells</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>137455730688</size>
+          <stripes config:type="integer">6</stripes>
+          <stripesize config:type="integer">64</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>IPredator</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>115964116992</size>
+          <stripes config:type="integer">2</stripes>
+          <stripesize config:type="integer">0</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>KubernetesLibDocker</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>107374182400</size>
+          <stripes config:type="integer">1</stripes>
+          <stripesize config:type="integer">0</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>SUSEDirectoryServer</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>34359738368</size>
+          <stripes config:type="integer">4</stripes>
+          <stripesize config:type="integer">128</stripesize>
+        </partition>
+      </partitions>
+      <pesize>4194304</pesize>
+      <type config:type="symbol">CT_LVM</type>
+    </drive>
+    <drive>
+      <device>/dev/VM</device>
+      <enable_snapshots config:type="boolean">true</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>Torrent-Server</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>107374182400</size>
+          <stripes config:type="integer">2</stripes>
+          <stripesize config:type="integer">128</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lv_name>swap</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>137438953472</size>
+          <stripes config:type="integer">2</stripes>
+          <stripesize config:type="integer">4096</stripesize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <create_subvolumes config:type="boolean">true</create_subvolumes>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">false</format>
+          <fstopt>noatime</fstopt>
+          <label>ROOT</label>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lv_name>ROOT</lv_name>
+          <mount>/</mount>
+          <mountby config:type="symbol">label</mountby>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>137438953472</size>
+          <stripes config:type="integer">2</stripes>
+          <stripesize config:type="integer">4096</stripesize>
+          <subvolumes config:type="list">
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/i386-pc</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">false</copy_on_write>
+              <path>var</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>root</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>tmp</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>usr/local</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>srv</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/x86_64-efi</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>opt</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>home</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/machines</path>
+            </subvolume>
+          </subvolumes>
+          <subvolumes_prefix><![CDATA[@]]></subvolumes_prefix>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lv_name>Router</lv_name>
+          <pool config:type="boolean">false</pool>
+          <resize config:type="boolean">false</resize>
+          <size>68719476736</size>
+          <stripes config:type="integer">1</stripes>
+          <stripesize config:type="integer">0</stripesize>
+        </partition>
+      </partitions>
+      <pesize>4194304</pesize>
+      <type config:type="symbol">CT_LVM</type>
+    </drive>
+    <drive>
+      <device>/dev/sda</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EFI</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdb</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdc</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EFI</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdd</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sde</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdf</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/molly:1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>6047313952768</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lvm_group>VM</lvm_group>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>853663899648</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdg</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/molly:1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>6047313952768</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <lvm_group>VM</lvm_group>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>854736592896</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdh</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdi</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/sdj</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>1073741824</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">true</crypt_fs>
+          <crypt_key>ENTER KEY HERE</crypt_key>
+          <format config:type="boolean">false</format>
+          <loop_fs config:type="boolean">true</loop_fs>
+          <lvm_group>VG_2</lvm_group>
+          <partition_id config:type="integer">142</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>274877906944</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <format config:type="boolean">false</format>
+          <partition_id config:type="integer">253</partition_id>
+          <partition_nr config:type="integer">4</partition_nr>
+          <partition_type>primary</partition_type>
+          <raid_name>/dev/md/EXPORT_1</raid_name>
+          <resize config:type="boolean">false</resize>
+          <size>1724177784320</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <report>
+    <errors>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </messages>
+    <warnings>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </warnings>
+    <yesno_messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </yesno_messages>
+  </report>
+  <samba-server>
+    <accounts config:type="list"/>
+    <backend/>
+    <config config:type="list">
+      <listentry>
+        <name>EXPORT_1</name>
+        <parameters>
+          <guest_ok>Yes</guest_ok>
+          <inherit_acls>Yes</inherit_acls>
+          <path>/mnt/EXPORT_1</path>
+          <read_only>No</read_only>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>EXPORT_2</name>
+        <parameters>
+          <guest_ok>Yes</guest_ok>
+          <inherit_acls>Yes</inherit_acls>
+          <path>/mnt/EXPORT_2</path>
+          <read_only>No</read_only>
+        </parameters>
+      </listentry>
+      <listentry>
+        <comment>smb.conf is the main Samba configuration file. You find a full commented
+version at /usr/share/doc/packages/samba/examples/smb.conf.SUSE if the
+samba-doc package is installed.</comment>
+        <name>global</name>
+        <parameters>
+          <aio_read_size>16384</aio_read_size>
+          <aio_write_size>16834</aio_write_size>
+          <allocation_roundup_size>4096</allocation_roundup_size>
+          <cups_options>raw</cups_options>
+          <include>/etc/samba/dhcp.conf</include>
+          <logon_drive>P:</logon_drive>
+          <logon_home>\\%L\%U\.9xprofile</logon_home>
+          <logon_path>\\%L\profiles\.msprofile</logon_path>
+          <map_to_guest>Bad User</map_to_guest>
+          <min_receivefile_size>16834</min_receivefile_size>
+          <netbios_name>NETCRAVE</netbios_name>
+          <passdb_backend>tdbsam</passdb_backend>
+          <printcap_cache_time>750</printcap_cache_time>
+          <printcap_name>cups</printcap_name>
+          <printing>cups</printing>
+          <read_raw>Yes</read_raw>
+          <socket_options>TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072</socket_options>
+          <strict_allocate>yes</strict_allocate>
+          <strict_locking>no</strict_locking>
+          <use_sendfile>yes</use_sendfile>
+          <usershare_allow_guests>Yes</usershare_allow_guests>
+          <usershare_max_shares>100</usershare_max_shares>
+          <wins_support>No</wins_support>
+          <workgroup>NETCRAVE</workgroup>
+          <write_raw>Yes</write_raw>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>groups</name>
+        <parameters>
+          <comment>All groups</comment>
+          <inherit_acls>Yes</inherit_acls>
+          <path>/home/groups</path>
+          <read_only>No</read_only>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>homes</name>
+        <parameters>
+          <browseable>No</browseable>
+          <comment>Home Directories</comment>
+          <inherit_acls>Yes</inherit_acls>
+          <read_only>No</read_only>
+          <valid_users>%S, %D%w%S</valid_users>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>print_dollarsign_</name>
+        <parameters>
+          <comment>Printer Drivers</comment>
+          <create_mask>0664</create_mask>
+          <directory_mask>0775</directory_mask>
+          <force_group>ntadmin</force_group>
+          <path>/var/lib/samba/drivers</path>
+          <write_list>@ntadmin root</write_list>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>printers</name>
+        <parameters>
+          <browseable>No</browseable>
+          <comment>All Printers</comment>
+          <create_mask>0600</create_mask>
+          <path>/var/tmp</path>
+          <printable>Yes</printable>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>profiles</name>
+        <parameters>
+          <comment>Network Profiles Service</comment>
+          <create_mask>0600</create_mask>
+          <directory_mask>0700</directory_mask>
+          <path>%H</path>
+          <read_only>No</read_only>
+          <store_dos_attributes>Yes</store_dos_attributes>
+        </parameters>
+      </listentry>
+      <listentry>
+        <name>users</name>
+        <parameters>
+          <comment>All users</comment>
+          <inherit_acls>Yes</inherit_acls>
+          <path>/home</path>
+          <read_only>No</read_only>
+          <veto_files>/aquota.user/groups/shares/</veto_files>
+        </parameters>
+      </listentry>
+    </config>
+    <service>Enabled</service>
+    <trustdom/>
+    <version>2.11</version>
+  </samba-server>
+  <security>
+    <allowshutdown>Root</allowshutdown>
+    <console_shutdown>ignore</console_shutdown>
+    <cracklib_dict_path>/usr/lib/cracklib_dict</cracklib_dict_path>
+    <disable_restart_on_update>no</disable_restart_on_update>
+    <disable_stop_on_removal>no</disable_stop_on_removal>
+    <displaymanager_remote_access>no</displaymanager_remote_access>
+    <displaymanager_root_login_remote>no</displaymanager_root_login_remote>
+    <displaymanager_xserver_tcp_port_6000_open>no</displaymanager_xserver_tcp_port_6000_open>
+    <fail_delay>3</fail_delay>
+    <gid_max>60000</gid_max>
+    <gid_min>1000</gid_min>
+    <hibernate_system>active_console</hibernate_system>
+    <kernel.sysrq>0</kernel.sysrq>
+    <net.ipv4.ip_forward>0</net.ipv4.ip_forward>
+    <net.ipv4.tcp_syncookies>1</net.ipv4.tcp_syncookies>
+    <net.ipv6.conf.all.forwarding>0</net.ipv6.conf.all.forwarding>
+    <pass_max_days>99999</pass_max_days>
+    <pass_min_days>1</pass_min_days>
+    <pass_min_len>6</pass_min_len>
+    <pass_warn_age>14</pass_warn_age>
+    <passwd_encryption>sha512</passwd_encryption>
+    <passwd_remember_history>0</passwd_remember_history>
+    <passwd_use_cracklib>yes</passwd_use_cracklib>
+    <permission_security>secure</permission_security>
+    <run_updatedb_as>nobody</run_updatedb_as>
+    <smtpd_listen_remote>no</smtpd_listen_remote>
+    <sys_gid_max>499</sys_gid_max>
+    <sys_gid_min>100</sys_gid_min>
+    <sys_uid_max>499</sys_uid_max>
+    <sys_uid_min>100</sys_uid_min>
+    <syslog_on_no_error>yes</syslog_on_no_error>
+    <systohc>yes</systohc>
+    <uid_max>60000</uid_max>
+    <uid_min>1000</uid_min>
+    <useradd_cmd>/usr/sbin/useradd.local</useradd_cmd>
+    <userdel_postcmd>/usr/sbin/userdel-post.local</userdel_postcmd>
+    <userdel_precmd>/usr/sbin/userdel-pre.local</userdel_precmd>
+  </security>
+  <software>
+    <image/>
+    <install_recommended config:type="boolean">true</install_recommended>
+    <instsource/>
+    <packages config:type="list">
+      <package>zsh</package>
+      <package>xorg-x11-Xvnc-novnc</package>
+      <package>vncmanager</package>
+      <package>typelib-1_0-Gtk-3_0</package>
+      <package>tor</package>
+      <package>snapper</package>
+      <package>shim</package>
+      <package>qemu-ovmf-ia32</package>
+      <package>python3-gobject-cairo</package>
+      <package>python-gtk</package>
+      <package>pv</package>
+      <package>proxychains-ng</package>
+      <package>ovmf-tools</package>
+      <package>openvswitch-ovn-host</package>
+      <package>openvswitch-ovn-central</package>
+      <package>openssh</package>
+      <package>openSUSE-release</package>
+      <package>numactl</package>
+      <package>net-tools-deprecated</package>
+      <package>mokutil</package>
+      <package>mdadm</package>
+      <package>lvm2</package>
+      <package>linphone</package>
+      <package>libvirt-client</package>
+      <package>kexec-tools</package>
+      <package>irqbalance</package>
+      <package>intltool</package>
+      <package>htop</package>
+      <package>grub2-x86_64-efi</package>
+      <package>glibc</package>
+      <package>firewalld</package>
+      <package>ekiga</package>
+      <package>e2fsprogs</package>
+      <package>dosfstools</package>
+      <package>docker-compose</package>
+      <package>docker</package>
+      <package>cryptsetup</package>
+      <package>chrony</package>
+      <package>btrfsprogs</package>
+      <package>bridge-utils</package>
+      <package>autoyast2</package>
+      <package>yast2-samba-client</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>apparmor</pattern>
+      <pattern>apparmor_opt</pattern>
+      <pattern>base</pattern>
+      <pattern>basesystem</pattern>
+      <pattern>books</pattern>
+      <pattern>console</pattern>
+      <pattern>enhanced_base</pattern>
+      <pattern>enhanced_base_opt</pattern>
+      <pattern>file_server</pattern>
+      <pattern>fonts</pattern>
+      <pattern>fonts_opt</pattern>
+      <pattern>games</pattern>
+      <pattern>imaging</pattern>
+      <pattern>imaging_opt</pattern>
+      <pattern>kde</pattern>
+      <pattern>kde_games</pattern>
+      <pattern>kde_imaging</pattern>
+      <pattern>kde_internet</pattern>
+      <pattern>kde_multimedia</pattern>
+      <pattern>kde_office</pattern>
+      <pattern>kde_plasma</pattern>
+      <pattern>kde_utilities</pattern>
+      <pattern>kde_utilities_opt</pattern>
+      <pattern>kde_yast</pattern>
+      <pattern>kvm_server</pattern>
+      <pattern>minimal_base</pattern>
+      <pattern>multimedia</pattern>
+      <pattern>multimedia_opt</pattern>
+      <pattern>network_admin</pattern>
+      <pattern>office</pattern>
+      <pattern>sw_management</pattern>
+      <pattern>x11</pattern>
+      <pattern>x11_enhanced</pattern>
+      <pattern>x11_opt</pattern>
+      <pattern>x11_yast</pattern>
+      <pattern>yast2_basis</pattern>
+    </patterns>
+    <products config:type="list">
+      <product>openSUSE</product>
+    </products>
+  </software>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>0</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask/>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <authorized_keys config:type="list">
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTC5uOuMrdR4iA7Pgg0AoquNx5YfOUyIvIZvi5n5ZPzL4K6aMqxNsBP69cueG9vYOQ/IMsFRVCv2aFZmsRp4CUj2rrB17+IQagkFJcLuJXr3AobxTHDgedz34stxrz0Xs2NIdSsOSVsm1fBI7NyeNikcN3qHdIeQW9JSdjqlJM63PzM7Q/oKvzbkQ0fo4gtGdYEHg+o4A7c7BhlWn/Xn9ADIf+q2GWsgNPleUXg6IUgX9vUv7WRfZHMLe0UXYUX2FbYJQ19DoindX8N5G9chW+TPB/oIsBIbntU4VyJu+nqCW2nzcyWqUysJ9e2Uf/lrbtEJTuYbHNqmq9XRHcIqiX erratic@molly</authorized_key>
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWebUARwn1BwQa2V3PEMza2uuhNT6wBjZLlyd3NnhnqvxoZzjLCT3+8sLkQPBQd1R3V8BRR79QOhKf1aCkuYgVotc2sQm1AyFZ138p6Yup5AIEv/7pu7aSP0CP4vT8sJjO26KKPWNL1A0gM0lEo59OJ0cT1MaPdparRrAiHK3p2vkCDiDPD5vwOVdzS//JYsBrWyM2MYMDNwDRRGZtSS0yOJs4umDVuQD4jJKOzmjrwdjENctUAMn5wT8XGJYKelrqdQr5DyymYEQk693pCo+7oHgd002tjzjxfYHQ1isMIR800P48yZZ5Rp/CnaWCCV+q0iC2gcR1EBEBIxcepazV erratic@linux-0vbz</authorized_key>
+        <authorized_key>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCi2csv+ddd2RZfaZ0f2yQRuPfM7yQ3gEBFG9l9AMKfPp4P9ooUJoUqnIt4XdJgvGP0syiTB68oO3LZhA6o1u1RujOp3QwoFjWFsFKndNckUHwI8qr+8OgFtjdvqgMG45Cwkc2TLIk7TtLotVD0Ez7+Tv43moq36K1Rhba35QPww1/dFCCzztc3pcwVUBXko+SQI/YfZ75Q1bSk8KzgZNVM54ln+Q6QZMxHSzx6DZFiPQazd8xDOxyB+d7cOzuUoFDkinISZEn75+Swk7go55wXzLFYNp7OFH/Kp/lxNgs6mrUSs5bdhxalJ3W0YLHKCZSO/IgfbHf87yoTJrjW8SNf erratic@linux-nkci</authorized_key>
+      </authorized_keys>
+      <username>erratic</username>
+    </user>
+  </users>
+</profile>
