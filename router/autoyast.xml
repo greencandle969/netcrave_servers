@@ -1,0 +1,888 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <global>
+      <append>nosplash console=tty1 console=ttyS0,115200n8 splash=silent quiet showopts</append>
+      <gfxmode>auto</gfxmode>
+      <hiddenmenu>false</hiddenmenu>
+      <os_prober>true</os_prober>
+      <serial>serial --unit=0 --speed=115200 --parity=no --word=8</serial>
+      <terminal>serial</terminal>
+      <timeout config:type="integer">8</timeout>
+      <xen_kernel_append>vga=gfx-1024x768x16</xen_kernel_append>
+    </global>
+    <loader_type>grub2-efi</loader_type>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <final_halt config:type="boolean">false</final_halt>
+      <final_reboot config:type="boolean">true</final_reboot>
+      <halt config:type="boolean">false</halt>
+      <second_stage config:type="boolean">true</second_stage>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">false</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">false</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">false</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">false</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage/>
+  </general>
+  <keyboard>
+    <keymap>english-us</keymap>
+  </keyboard>
+  <networking>
+    <dhcp_options>
+      <dhclient_client_id/>
+      <dhclient_hostname_option>AUTO</dhclient_hostname_option>
+    </dhcp_options>
+    <dns>
+      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
+      <hostname>linux-9c9c</hostname>
+      <nameservers config:type="list">
+        <nameserver>10.242.192.2</nameserver>
+      </nameservers>
+      <resolv_conf_policy>static</resolv_conf_policy>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bonding_master>yes</bonding_master>
+        <bonding_module_opts>mode=802.3ad miimon=100</bonding_module_opts>
+        <bonding_slave0>eth1</bonding_slave0>
+        <bonding_slave1>eth0</bonding_slave1>
+        <bootproto>none</bootproto>
+        <device>CH1</device>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <zone>drop</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth2 DMZ_1</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>DMZ_1_BR</device>
+        <ipaddr>10.242.254.1</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <aliases>
+          <alias0>
+            <IPADDR>192.168.1.245</IPADDR>
+            <LABEL>WAN</LABEL>
+            <NETMASK>255.255.255.0</NETMASK>
+            <PREFIXLEN>24</PREFIXLEN>
+          </alias0>
+        </aliases>
+        <bootproto>dhcp6</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth8 CISCO LEGACY</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>LEGACY_BR</device>
+        <mtu>9000</mtu>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>external</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth6 MSFT</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>MSFT_BR</device>
+        <ipaddr>10.242.192.1</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth7 PAIGE</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>PAIGE_BR</device>
+        <ipaddr>10.242.2.1</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth4 SERVERS</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>SERVERS_BR</device>
+        <ipaddr>10.242.242.1</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>eth5 UNTRUSTED</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>UNTRUSTED_BR</device>
+        <ipaddr>10.242.240.254</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <bridge>yes</bridge>
+        <bridge_forwarddelay>0</bridge_forwarddelay>
+        <bridge_ports>VOIP</bridge_ports>
+        <bridge_stp>off</bridge_stp>
+        <device>VOIP_BR</device>
+        <ipaddr>10.242.128.1</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>internal</zone>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth0</device>
+        <mtu>9000</mtu>
+        <name>I350 Gigabit Network Connection</name>
+        <startmode>auto</startmode>
+        <zone>block</zone>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth1</device>
+        <mtu>9000</mtu>
+        <name>I350 Gigabit Network Connection</name>
+        <startmode>auto</startmode>
+        <zone>block</zone>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth2</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 0</name>
+        <startmode>auto</startmode>
+        <zone>block</zone>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth4</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 2</name>
+        <startmode>auto</startmode>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth5</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 5</name>
+        <startmode>auto</startmode>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth6</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 3</name>
+        <startmode>auto</startmode>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth7</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 1</name>
+        <startmode>auto</startmode>
+        <zone>block</zone>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth8</device>
+        <mtu>9000</mtu>
+        <name>Ethernet Card 4</name>
+        <startmode>auto</startmode>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <device>lo</device>
+        <firewall>no</firewall>
+        <ipaddr>127.0.0.1</ipaddr>
+        <netmask>255.0.0.0</netmask>
+        <network>127.0.0.0</network>
+        <prefixlen>8</prefixlen>
+        <startmode>nfsroot</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>CISCO</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>1</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>DMZ_1</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>3</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>LEGACY</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>201</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>MSFT</device>
+        <etherdevice>eth6</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>6</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>PAIGE</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>3</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>SERVERS</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>2</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>UNTRUSTED</device>
+        <etherdevice>eth5</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>8</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>VOIP</device>
+        <etherdevice>CH1</etherdevice>
+        <mtu>9000</mtu>
+        <startmode>auto</startmode>
+        <vlan_id>4</vlan_id>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>wlan0</device>
+        <name>802.11ac NIC</name>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <wireless_ap_scanmode>1</wireless_ap_scanmode>
+        <wireless_auth_mode>no-encryption</wireless_auth_mode>
+        <wireless_bitrate>auto</wireless_bitrate>
+        <wireless_default_key>0</wireless_default_key>
+        <wireless_eap_auth>MSCHAPV2</wireless_eap_auth>
+        <wireless_eap_mode>PEAP</wireless_eap_mode>
+        <wireless_essid>NETCRAVE</wireless_essid>
+        <wireless_key_length>128</wireless_key_length>
+        <wireless_mode>Master</wireless_mode>
+        <wireless_power>no</wireless_power>
+      </interface>
+    </interfaces>
+    <ipv6 config:type="boolean">true</ipv6>
+    <keep_install_network config:type="boolean">true</keep_install_network>
+    <managed config:type="boolean">false</managed>
+    <net-udev config:type="list">
+      <rule>
+        <name>eth0</name>
+        <rule>KERNELS</rule>
+        <value>0000:05:00.0</value>
+      </rule>
+      <rule>
+        <name>eth1</name>
+        <rule>KERNELS</rule>
+        <value>0000:06:00.0</value>
+      </rule>
+      <rule>
+        <name>eth2</name>
+        <rule>KERNELS</rule>
+        <value>0000:0a:00.0</value>
+      </rule>
+      <rule>
+        <name>eth4</name>
+        <rule>KERNELS</rule>
+        <value>0000:0b:00.0</value>
+      </rule>
+      <rule>
+        <name>eth5</name>
+        <rule>KERNELS</rule>
+        <value>0000:0c:00.0</value>
+      </rule>
+      <rule>
+        <name>eth6</name>
+        <rule>KERNELS</rule>
+        <value>0000:09:00.0</value>
+      </rule>
+      <rule>
+        <name>eth7</name>
+        <rule>KERNELS</rule>
+        <value>0000:08:00.0</value>
+      </rule>
+      <rule>
+        <name>eth8</name>
+        <rule>KERNELS</rule>
+        <value>0000:07:00.0</value>
+      </rule>
+    </net-udev>
+    <routing>
+      <ipv4_forward config:type="boolean">false</ipv4_forward>
+      <ipv6_forward config:type="boolean">false</ipv6_forward>
+      <routes config:type="list">
+        <route>
+          <destination>default</destination>
+          <device>LEGACY_BR</device>
+          <gateway>192.168.1.1</gateway>
+          <netmask>-</netmask>
+        </route>
+      </routes>
+    </routing>
+  </networking>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/vda</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">true</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <filesystem config:type="symbol">vfat</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>codepage=437</fstopt>
+          <label>EFI</label>
+          <mount>/boot/efi</mount>
+          <mountby config:type="symbol">label</mountby>
+          <partition_id config:type="integer">259</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>268435456</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <create_subvolumes config:type="boolean">true</create_subvolumes>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">true</format>
+          <label>ROOT</label>
+          <mount>/</mount>
+          <mountby config:type="symbol">label</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <partition_type>primary</partition_type>
+          <resize config:type="boolean">false</resize>
+          <size>68449975808</size>
+          <subvolumes config:type="list">
+            <subvolume>
+              <copy_on_write config:type="boolean">false</copy_on_write>
+              <path>var</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>usr/local</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>tmp</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>home</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/x86_64-efi</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/i386-pc</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>srv</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>root</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>opt</path>
+            </subvolume>
+          </subvolumes>
+          <subvolumes_prefix><![CDATA[@]]></subvolumes_prefix>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <printer>
+    <client_conf_content>
+      <file_contents><![CDATA[# CUPS client configuration file (optional).
+
+# You may use /etc/cups/client.conf (system wide)
+# or ~/.cups/client.conf (per user).
+# For more information see "man 5 client.conf".
+
+# The ServerName directive specifies the remote server
+# that is to be used for all client operations. That is, it
+# redirects all client requests directly to that remote server
+# so that a local running cupsd is not used in this case.
+# The default is to use the local server ("localhost") or domain socket.
+# Only one ServerName directive may appear.
+# If multiple names are present, only the last one is used.
+# The default port number is 631 but can be overridden by adding
+# a colon followed by the desired port number.
+# The default IPP version is 2.0 but can be overridden by adding
+# a slash followed by version=V where V is 1.0 or 1.1 or 2.0 or 2.1 or 2.2.
+# IPP version 2.0 does do not work with CUPS 1.3 or older servers.
+# If an CUPS 1.3 or older server is used, its older IPP version
+# must be specified as .../version=1.1 or .../version=1.0.
+
+# Examples:
+# ServerName sever.example.com
+# ServerName 192.0.2.10
+# ServerName sever.example.com:8631
+# ServerName older.server.example.com/version=1.1
+# ServerName older.server.example.com:8631/version=1.1
+
+]]></file_contents>
+    </client_conf_content>
+    <cupsd_conf_content>
+      <file_contents><![CDATA[#
+# Default configuration file for the CUPS scheduler.  See "man cupsd.conf" for a
+# complete description of this file.
+#
+
+# Log general information in error_log - change "warn" to "debug"
+# for troubleshooting...
+LogLevel warn
+PageLogFormat
+
+# Only listen for connections from the local machine.
+Listen localhost:631
+Listen /run/cups/cups.sock
+
+# Show shared printers on the local network.
+Browsing On
+BrowseLocalProtocols dnssd
+
+# Default authentication type, when authentication is required...
+DefaultAuthType Basic
+
+# Web interface setting...
+WebInterface Yes
+
+# Restrict access to the server...
+<Location />
+  Order allow,deny
+</Location>
+
+# Restrict access to the admin pages...
+<Location /admin>
+  Order allow,deny
+</Location>
+
+# Restrict access to configuration files...
+<Location /admin/conf>
+  AuthType Default
+  Require user @SYSTEM
+  Order allow,deny
+</Location>
+
+# Restrict access to log files...
+<Location /admin/log>
+  AuthType Default
+  Require user @SYSTEM
+  Order allow,deny
+</Location>
+
+# Set the default printer/job policies...
+<Policy default>
+  # Job/subscription privacy...
+  JobPrivateAccess default
+  JobPrivateValues default
+  SubscriptionPrivateAccess default
+  SubscriptionPrivateValues default
+
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Create-Job Print-Job Print-URI Validate-Job>
+    Order deny,allow
+  </Limit>
+
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default CUPS-Get-Devices>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All printer operations require a printer operator to authenticate...
+  <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer Promote-Job Schedule-Job-After Cancel-Jobs CUPS-Accept-Jobs CUPS-Reject-Jobs>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+
+# Set the authenticated printer/job policies...
+<Policy authenticated>
+  # Job/subscription privacy...
+  JobPrivateAccess default
+  JobPrivateValues default
+  SubscriptionPrivateAccess default
+  SubscriptionPrivateValues default
+
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Create-Job Print-Job Print-URI Validate-Job>
+    AuthType Default
+    Order deny,allow
+  </Limit>
+
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
+    AuthType Default
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All printer operations require a printer operator to authenticate...
+  <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer Promote-Job Schedule-Job-After Cancel-Jobs CUPS-Accept-Jobs CUPS-Reject-Jobs>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    AuthType Default
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+
+# Set the kerberized printer/job policies...
+<Policy kerberos>
+  # Job/subscription privacy...
+  JobPrivateAccess default
+  JobPrivateValues default
+  SubscriptionPrivateAccess default
+  SubscriptionPrivateValues default
+
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Create-Job Print-Job Print-URI Validate-Job>
+    AuthType Negotiate
+    Order deny,allow
+  </Limit>
+
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
+    AuthType Negotiate
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All printer operations require a printer operator to authenticate...
+  <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer Promote-Job Schedule-Job-After Cancel-Jobs CUPS-Accept-Jobs CUPS-Reject-Jobs>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    AuthType Negotiate
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+
+# The policy below is added by SUSE during build of our cups package.
+# The policy 'allowallforanybody' is totally open and insecure and therefore
+# it can only be used within an internal network where only trused users exist
+# and where the cupsd is not accessible at all from any external host, see
+# http://en.opensuse.org/SDB:CUPS_and_SANE_Firewall_settings
+# Have in mind that any user who is allowed to do printer admin tasks
+# can change the print queues as he likes - e.g. send copies of confidental
+# print jobs from an internal network to any external destination, see
+# http://en.opensuse.org/SDB:CUPS_in_a_Nutshell
+# For documentation regarding 'Managing Operation Policies' see
+# http://www.cups.org/documentation.php/doc-1.7/policies.html
+<Policy allowallforanybody>
+  # Allow anybody to access job's private values:
+  JobPrivateAccess all
+  # Make none of the job values to be private:
+  JobPrivateValues none
+  # Allow anybody to access subscription's private values:
+  SubscriptionPrivateAccess all
+  # Make none of the subscription values to be private:
+  SubscriptionPrivateValues none
+  # Allow anybody to do all IPP operations:
+  # Currently the IPP operations Validate-Job Cancel-Jobs Cancel-My-Jobs Close-Job CUPS-Get-Document
+  # must be additionally exlicitly specified because those IPP operations are not included
+  # in the "All" wildcard value - otherwise cupsd prints error messages of the form
+  # "No limit for Validate-Job defined in policy allowallforanybody and no suitable template found."
+  <Limit Validate-Job Cancel-Jobs Cancel-My-Jobs Close-Job CUPS-Get-Document>
+    Order deny,allow
+    Allow from all
+  </Limit>
+  # Since CUPS > 1.5.4 the "All" wildcard value must be specified separately,
+  # otherwise clients like "lpstat -p" just hang up,
+  # see https://bugzilla.opensuse.org/show_bug.cgi?id=936309
+  # and https://www.cups.org/str.php?L4659
+  <Limit All>
+    Order deny,allow
+    Allow from all
+  </Limit>
+</Policy>
+# Explicitly set the CUPS 'default' policy to be used by default:
+DefaultPolicy default
+
+]]></file_contents>
+    </cupsd_conf_content>
+  </printer>
+  <services-manager>
+    <default_target>graphical</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>ModemManager</service>
+        <service>NetworkManager-dispatcher</service>
+        <service>YaST2-Firstboot</service>
+        <service>YaST2-Second-Stage</service>
+        <service>apparmor</service>
+        <service>appstream-sync-cache</service>
+        <service>auditd</service>
+        <service>avahi-daemon</service>
+        <service>bluetooth</service>
+        <service>klog</service>
+        <service>btrfsmaintenance-refresh</service>
+        <service>ca-certificates</service>
+        <service>chronyd</service>
+        <service>cron</service>
+        <service>cups</service>
+        <service>firewalld</service>
+        <service>wickedd-auto4</service>
+        <service>wickedd-dhcp4</service>
+        <service>wickedd-dhcp6</service>
+        <service>wickedd-nanny</service>
+        <service>dhcpd</service>
+        <service>display-manager</service>
+        <service>getty@tty1</service>
+        <service>haveged</service>
+        <service>strongswan</service>
+        <service>irqbalance</service>
+        <service>iscsi</service>
+        <service>iscsid</service>
+        <service>kbdsettings</service>
+        <service>lvm2-monitor</service>
+        <service>mcelog</service>
+        <service>named</service>
+        <service>wicked</service>
+        <service>nscd</service>
+        <service>pcscd</service>
+        <service>postfix</service>
+        <service>purge-kernels</service>
+        <service>rsyslog</service>
+        <service>serial-getty@ttyS0</service>
+        <service>smartd</service>
+        <service>spice-vdagentd</service>
+        <service>squid</service>
+        <service>sshd</service>
+        <service>tor</service>
+        <service>vncmanager</service>
+      </enable>
+    </services>
+  </services-manager>
+  <software>
+    <image/>
+    <install_recommended config:type="boolean">true</install_recommended>
+    <instsource/>
+    <packages config:type="list">
+      <package>zd1211-firmware</package>
+      <package>yast2-squid</package>
+      <package>xorg-x11-Xvnc-novnc</package>
+      <package>wifi-hostapd-ap</package>
+      <package>vncmanager</package>
+      <package>tor</package>
+      <package>strongswan</package>
+      <package>snapper</package>
+      <package>shim</package>
+      <package>rtl8812au</package>
+      <package>openssh</package>
+      <package>openSUSE-release</package>
+      <package>numactl</package>
+      <package>npm8</package>
+      <package>net-tools-deprecated</package>
+      <package>mokutil</package>
+      <package>kexec-tools</package>
+      <package>kernel-default-devel</package>
+      <package>irqbalance</package>
+      <package>ipw-firmware</package>
+      <package>htop</package>
+      <package>grub2-x86_64-efi</package>
+      <package>gparted</package>
+      <package>glibc</package>
+      <package>git</package>
+      <package>firewalld</package>
+      <package>e2fsprogs</package>
+      <package>dosfstools</package>
+      <package>dkms</package>
+      <package>chrony</package>
+      <package>btrfsprogs</package>
+      <package>bridge-utils</package>
+      <package>bcm43xx-firmware</package>
+      <package>bcm20702a1-firmware</package>
+      <package>autoyast2</package>
+      <package>atmel-firmware</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>apparmor</pattern>
+      <pattern>apparmor_opt</pattern>
+      <pattern>base</pattern>
+      <pattern>basesystem</pattern>
+      <pattern>console</pattern>
+      <pattern>dhcp_dns_server</pattern>
+      <pattern>enhanced_base</pattern>
+      <pattern>enhanced_base_opt</pattern>
+      <pattern>fonts</pattern>
+      <pattern>fonts_opt</pattern>
+      <pattern>games</pattern>
+      <pattern>gateway_server</pattern>
+      <pattern>imaging</pattern>
+      <pattern>imaging_opt</pattern>
+      <pattern>kde</pattern>
+      <pattern>kde_games</pattern>
+      <pattern>kde_imaging</pattern>
+      <pattern>kde_internet</pattern>
+      <pattern>kde_multimedia</pattern>
+      <pattern>kde_office</pattern>
+      <pattern>kde_plasma</pattern>
+      <pattern>kde_utilities</pattern>
+      <pattern>kde_utilities_opt</pattern>
+      <pattern>kde_yast</pattern>
+      <pattern>minimal_base</pattern>
+      <pattern>multimedia</pattern>
+      <pattern>multimedia_opt</pattern>
+      <pattern>network_admin</pattern>
+      <pattern>office</pattern>
+      <pattern>sw_management</pattern>
+      <pattern>x11</pattern>
+      <pattern>x11_enhanced</pattern>
+      <pattern>x11_opt</pattern>
+      <pattern>x11_yast</pattern>
+      <pattern>yast2_basis</pattern>
+    </patterns>
+    <products config:type="list">
+      <product>openSUSE</product>
+    </products>
+  </software>
+  <sound>
+    <configure_detected config:type="boolean">false</configure_detected>
+    <modules_conf config:type="list"/>
+    <pulse_audio_status config:type="boolean">true</pulse_audio_status>
+    <rc_vars>
+      <LOAD_ALSA_SEQ>no</LOAD_ALSA_SEQ>
+    </rc_vars>
+    <volume_settings config:type="list">
+      <volume_entry config:type="list">
+        <volume_component>
+          <mute config:type="boolean">false</mute>
+          <name>Master</name>
+          <volume config:type="integer">100</volume>
+        </volume_component>
+        <volume_component>
+          <mute config:type="boolean">false</mute>
+          <name>PCM</name>
+          <volume config:type="integer">100</volume>
+        </volume_component>
+      </volume_entry>
+    </volume_settings>
+  </sound>
+  <sysconfig config:type="list">
+    <sysconfig_entry>
+      <sysconfig_key>SSHD_OPTS</sysconfig_key>
+      <sysconfig_path>/etc/sysconfig/ssh</sysconfig_path>
+      <sysconfig_value>-o "PermitEmptyPassword no" -o "PubkeyAuthentication yes" -o "PasswordAuthentication no" -o "ChallengeResponseAuthentication no"</sysconfig_value>
+    </sysconfig_entry>
+  </sysconfig>
+</profile>
