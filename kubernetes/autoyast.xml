@@ -1,0 +1,543 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <global>
+      <append>splash=silent resume=/dev/disk/by-path/pci-0000:03:00.0-part3 mitigations=auto quiet</append>
+      <cpu_mitigations>auto</cpu_mitigations>
+      <gfxmode>auto</gfxmode>
+      <hiddenmenu>false</hiddenmenu>
+      <os_prober>true</os_prober>
+      <terminal>gfxterm</terminal>
+      <timeout config:type="integer">8</timeout>
+      <xen_kernel_append>vga=gfx-1024x768x16</xen_kernel_append>
+    </global>
+    <loader_type>grub2-efi</loader_type>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <final_halt config:type="boolean">false</final_halt>
+      <final_reboot config:type="boolean">true</final_reboot>
+      <halt config:type="boolean">false</halt>
+      <second_stage config:type="boolean">true</second_stage>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">false</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">false</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">false</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">false</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage/>
+  </general>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>10.242.242.128</host_address>
+        <names config:type="list">
+          <name>linux-o02m</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>::1</host_address>
+        <names config:type="list">
+          <name>localhost ipv6-localhost ipv6-loopback</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>fe00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-localnet</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-mcastprefix</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::1</host_address>
+        <names config:type="list">
+          <name>ipv6-allnodes</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::2</host_address>
+        <names config:type="list">
+          <name>ipv6-allrouters</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::3</host_address>
+        <names config:type="list">
+          <name>ipv6-allhosts</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+  <login_settings/>
+  <networking>
+    <dhcp_options>
+      <dhclient_client_id/>
+      <dhclient_hostname_option>AUTO</dhclient_hostname_option>
+    </dhcp_options>
+    <dns>
+      <dhcp_hostname config:type="boolean">true</dhcp_hostname>
+      <hostname>linux-o02m</hostname>
+      <nameservers config:type="list">
+        <nameserver>10.242.242.1</nameserver>
+      </nameservers>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>static</bootproto>
+        <device>enp1s0</device>
+        <dhclient_set_default_route>yes</dhclient_set_default_route>
+        <ipaddr>10.242.242.128</ipaddr>
+        <mtu>9000</mtu>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <zone>Do not assign ZONE</zone>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <device>lo</device>
+        <firewall>no</firewall>
+        <ipaddr>127.0.0.1</ipaddr>
+        <netmask>255.0.0.0</netmask>
+        <network>127.0.0.0</network>
+        <prefixlen>8</prefixlen>
+        <startmode>nfsroot</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+    </interfaces>
+    <ipv6 config:type="boolean">true</ipv6>
+    <keep_install_network config:type="boolean">true</keep_install_network>
+    <managed config:type="boolean">false</managed>
+    <net-udev config:type="list">
+      <rule>
+        <name>enp1s0</name>
+        <rule>ATTR{address}</rule>
+        <value>52:54:00:4b:d2:6f</value>
+      </rule>
+    </net-udev>
+    <routing>
+      <ipv4_forward config:type="boolean">true</ipv4_forward>
+      <ipv6_forward config:type="boolean">true</ipv6_forward>
+      <routes config:type="list">
+        <route>
+          <destination>default</destination>
+          <device>enp1s0</device>
+          <gateway>10.242.242.1</gateway>
+          <netmask>-</netmask>
+        </route>
+      </routes>
+    </routing>
+  </networking>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/vda</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">true</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <filesystem config:type="symbol">vfat</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>codepage=437</fstopt>
+          <label>EFI</label>
+          <mount>/boot/efi</mount>
+          <mountby config:type="symbol">label</mountby>
+          <partition_id config:type="integer">259</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>524288000</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <create_subvolumes config:type="boolean">true</create_subvolumes>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>rw,relatime,space_cache,subvolid=285,subvol=/@/.snapshots/9/snapshot</fstopt>
+          <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>31685869568</size>
+          <subvolumes config:type="list">
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>opt</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/x86_64-efi</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>boot/grub2/i386-pc</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">false</copy_on_write>
+              <path>var</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>home</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>usr/local</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>tmp</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>srv</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>root</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/a13c75d9b34850d4b3d34d8996ca31e9e05ce4b1ba4fdf569282c2fc02e50d95</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/3eb4155acef8377f36cf759b81e2759c44a161968ae4bcba4c5c58fe50bd4b3c</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/4f9632869c5de340a9588d23da57858a629dad4bb45d08ba863884ec5f13c103</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/fef37b3a71a7a0b81c35c56402af3816e4797692b46890e5a486e6cca1f65166</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/5201f77a692664e1a89a2bc824123ebd81e9c54ff73206af58d6c2a67e82ca32</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/91b32ead0aba75d5dd2621f7f4e602a5bfba7914db4517097afa450aae604043</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/b715ad22b45a8ba0adb5a672c86ef479a741c1431a81d3630047fc49724f2335</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/31ff7dcb7b7b90926be488ddf5fd3e000138c06c04fed5151a901f646d38fd2f</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/ece78d62671072650c195698755ff61f30aff9d3cfb7fa49290d13df39c1ca72</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/4b84f40906241d846f5ff761c9eec1864cb489d166872de9225a7c8d2170c3f6</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/fe9a8b4f1dccd77105b8423a26536ff756f1ee99fdcae6893eb737ae1c527c7a</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/62061b1fac1e20533fc96d8654a54d6cfdf85b73c7010cf9af5a57dbc7da39c6</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/4f23d2312ca651f2c72391844c0a212aaf2cd6765ce22e3633b3bade6955cab7</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/22cb1950fcb6a024e555d16637fafcf49ab5807036eec779e4cb5ce5b664ac08</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/d639b2567e5e9c2a90ac76983f819bc470bef5967ab2017d8febce3d84e8d7da</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/b4e71917b817fd6e9fa8dfa3a51d025ce32b6feb19471e57f4804a7504f0f2fd</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/e17133b79956ad6f69ae7f775badd1c11bad2fc64f0529cab863b9d12fbaa5c4</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/8a788232037eaf17794408ff3df6b922a1aedf9ef8de36afdae3ed0b0381907b</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/aea2a05d1e90f018e85feca5333e94dc8800d0129d1afe938ba6072bfb4383c1</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/91ea8547433ba040e506e405816e01c0ae793045acb82d677596ccf68501c2b4</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/fb61a074724df9ebf0f3ea2fc07cf9a25d19c66ecb926c248549641e4ecd7037</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/5d2e2201e3760cdf9d032c2fc4cf4f538d3ace98f91711a4d32c075592885e47</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/7be23ddc58ba4394b8a841bd12c6d196dfc2acb01d8f71b9a29691b0e3c21829</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/2f2d189afc5087ca66fe01ff1e2aefd8fb1fe227de0889a74e8b80ddeb2a1429</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/fe1973f30da1c37d00b20ba5a82242056c505926e58db84ba4e2d15ff73d1982</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/ec2d8039e8878e6be53f6884317a16cd0964217b63cb37761d9be79dacc7f789</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/879b82969a84c2f6e91ab00d58e10e76d4fd27dc2ef316360625c7da194c693e</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/96c8201e8a36e1dc5cb6f2bd86e8a16a1ad4c50245b6d640328d4ce0b900262f</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/7e6a03f46d27bc4ccf2d31117aad370a51454a7d0e74b8b48048a46c701bc3bf</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/f19e411e5698fcb5940195eabf7526563cfca1ff9ae3baf911532af6f8d3c484</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/4bd73c0a793e0919ba39d256c3544b8a05e550535e3a7bd150abd060d1443974</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/9908abb42925ae667df961ab63fa06f901ccf10cefea7eeebabba7852f64aa6d</path>
+            </subvolume>
+            <subvolume>
+              <copy_on_write config:type="boolean">true</copy_on_write>
+              <path>var/lib/containers/storage/btrfs/subvolumes/8b46f4551bc7fd5ebc3a86078cfaa12281ef2f5ffbc3f757af346c0c8a1c9c48</path>
+            </subvolume>
+          </subvolumes>
+          <subvolumes_prefix><![CDATA[@]]></subvolumes_prefix>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <label>SWAP</label>
+          <mount>swap</mount>
+          <mountby config:type="symbol">label</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>2148515328</size>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+    <drive>
+      <device>/dev/vdb</device>
+      <disklabel>gpt</disklabel>
+      <enable_snapshots config:type="boolean">false</enable_snapshots>
+      <initialize config:type="boolean">false</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <create_subvolumes config:type="boolean">false</create_subvolumes>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>rw,relatime,space_cache,subvolid=5,subvol=/</fstopt>
+          <mount>/var/lib/docker</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>107373116928</size>
+          <subvolumes config:type="list"/>
+          <subvolumes_prefix><![CDATA[]]></subvolumes_prefix>
+        </partition>
+      </partitions>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <services-manager>
+    <default_target>multi-user</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>YaST2-Firstboot</service>
+        <service>YaST2-Second-Stage</service>
+        <service>apparmor</service>
+        <service>auditd</service>
+        <service>klog</service>
+        <service>btrfsmaintenance-refresh</service>
+        <service>chronyd</service>
+        <service>cloud-config</service>
+        <service>cloud-final</service>
+        <service>cloud-init</service>
+        <service>cloud-init-local</service>
+        <service>create-dirs-from-rpmdb</service>
+        <service>crio</service>
+        <service>cron</service>
+        <service>cups</service>
+        <service>wickedd-auto4</service>
+        <service>wickedd-dhcp4</service>
+        <service>wickedd-dhcp6</service>
+        <service>wickedd-nanny</service>
+        <service>getty@tty1</service>
+        <service>haveged</service>
+        <service>health-checker</service>
+        <service>irqbalance</service>
+        <service>iscsi</service>
+        <service>issue-add-ssh-keys</service>
+        <service>issue-generator</service>
+        <service>kbdsettings</service>
+        <service>kubelet</service>
+        <service>kubicd</service>
+        <service>lvm2-monitor</service>
+        <service>man-db-create</service>
+        <service>mcelog</service>
+        <service>wicked</service>
+        <service>nscd</service>
+        <service>postfix</service>
+        <service>rebootmgr</service>
+        <service>rsyslog</service>
+        <service>smartd</service>
+        <service>sshd</service>
+        <service>systemd-remount-fs</service>
+        <service>tallow</service>
+      </enable>
+      <on_demand config:type="list">
+        <listentry>iscsid</listentry>
+      </on_demand>
+    </services>
+  </services-manager>
+  <software>
+    <image/>
+    <install_recommended config:type="boolean">true</install_recommended>
+    <instsource/>
+    <packages config:type="list">
+      <package>wicked</package>
+      <package>transactional-update</package>
+      <package>snapper</package>
+      <package>shim</package>
+      <package>rook-k8s-yaml</package>
+      <package>pkgconf-pkg-config</package>
+      <package>pkgconf-m4</package>
+      <package>pkgconf</package>
+      <package>openssh</package>
+      <package>numactl</package>
+      <package>mokutil</package>
+      <package>libzstd1-32bit</package>
+      <package>libssh-config</package>
+      <package>libpkgconf3</package>
+      <package>libevent-2_1-6</package>
+      <package>libcdio19</package>
+      <package>kexec-tools</package>
+      <package>irqbalance</package>
+      <package>grub2-x86_64-efi</package>
+      <package>glibc</package>
+      <package>firewalld</package>
+      <package>e2fsprogs</package>
+      <package>dosfstools</package>
+      <package>chrony</package>
+      <package>btrfsprogs</package>
+      <package>autoyast2</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>32bit</pattern>
+      <pattern>apparmor</pattern>
+      <pattern>apparmor-32bit</pattern>
+      <pattern>apparmor_opt</pattern>
+      <pattern>base</pattern>
+      <pattern>base-32bit</pattern>
+      <pattern>basesystem</pattern>
+      <pattern>books</pattern>
+      <pattern>console</pattern>
+      <pattern>container_runtime</pattern>
+      <pattern>container_runtime_kubernetes</pattern>
+      <pattern>documentation</pattern>
+      <pattern>enhanced_base</pattern>
+      <pattern>enhanced_base-32bit</pattern>
+      <pattern>enhanced_base_opt</pattern>
+      <pattern>kubeadm</pattern>
+      <pattern>kubernetes_utilities</pattern>
+      <pattern>kubic_admin</pattern>
+      <pattern>kubic_worker</pattern>
+      <pattern>microos_apparmor</pattern>
+      <pattern>microos_base</pattern>
+      <pattern>microos_cloud</pattern>
+      <pattern>microos_hardware</pattern>
+      <pattern>microos_ima_evm</pattern>
+      <pattern>microos_sssd_ldap</pattern>
+      <pattern>minimal_base</pattern>
+      <pattern>minimal_base-32bit</pattern>
+      <pattern>sw_management</pattern>
+      <pattern>sw_management-32bit</pattern>
+      <pattern>yast2_basis</pattern>
+    </patterns>
+    <products config:type="list">
+      <product>openSUSE-MicroOS</product>
+    </products>
+  </software>
+  <ssh_import>
+    <copy_config config:type="boolean">false</copy_config>
+    <import config:type="boolean">false</import>
+  </ssh_import>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <authorized_keys config:type="list"/>
+      <home_btrfs_subvolume config:type="boolean">false</home_btrfs_subvolume>
+      <username>erratic</username>
+    </user>
+  </users>
+</profile>
